@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="testXHR.js"></script>
+</head>
+<body>
+<h1>登录到系统</h1>
+<form method="post" action="login">
+    <hr>
+    <div>
+        <label>
+            <input type="text" placeholder="用户名" name="username">
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="password" placeholder="密码" name="password">
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" placeholder="记住我" name="remember-me">
+            记住我
+        </label>
+    </div>
+    <div>
+        <button>登录</button>
+    </div>
+</form>
+<div>
+    <hr>
+</div>
+<form method="post" action="fileUpload" enctype="multipart/form-data">
+    <div>
+        <input type="file" name="test-file">
+    </div>
+    <div>
+        <button>上传文件</button>
+    </div>
+</form>
+<hr>
+<a href="fileUpload" download="Yae Miko.jpg">点我下载高清资源</a>
+<hr>
+<div id="time"></div>
+<br>
+<button onclick="updateTime()">更新数据</button>
+<script>
+    updateTime()
+</script>
+</body>
+</html>
