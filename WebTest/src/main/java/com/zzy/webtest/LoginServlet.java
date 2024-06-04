@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
                     passwordCookie.setMaxAge(0);
                     resp.addCookie(useernameCookie);
                     resp.addCookie(passwordCookie);// 0s
+
                 }
             }
         }
