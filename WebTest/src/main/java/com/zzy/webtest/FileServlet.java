@@ -39,6 +39,7 @@ public class FileServlet extends HttpServlet {
         InputStream inputStream = Resources.getResourceAsStream("Yae Miko.jpg");
         // 直接使用copy方法完成转换
         IOUtils.copy(inputStream, outputStream);
+        System.out.println("123");
     }
 
     /**
