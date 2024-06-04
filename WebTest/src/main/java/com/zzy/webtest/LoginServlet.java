@@ -10,10 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Map;
 
@@ -46,6 +43,8 @@ public class LoginServlet extends HttpServlet {
                 UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
                 User user = userMapper.getUser(username, password);
                 if (user != null) {
+                    HttpSession httpSession = req.getSession();
+                    httpSession.setAttribute("user", user);
                     resp.getWriter().write("记住我操作成功，当前登录用户：" + user.getUsername());
                     resp.sendRedirect("time");
                     return;
@@ -60,8 +59,7 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         }
-//        req.getRequestDispatcher("/").forward(req, resp);   //正常情况还是转发给默认的Servlet帮我们返回静态页面
-        resp.sendRedirect("index.html");   //转发到index.html
+        req.getRequestDispatcher("/").forward(req, resp);   //正常情况还是转发给默认的Servlet帮我们返回静态页面
     }
 
     @Override
@@ -103,6 +101,9 @@ public class LoginServlet extends HttpServlet {
                     // 请求转发
                     req.setAttribute("user", loginUser);
                     req.getRequestDispatcher("time").forward(req, resp);
+
+                    HttpSession httpSession = req.getSession();
+                    httpSession.setAttribute("user", loginUser);
 
 //                    resp.getWriter().write("用户登陆成功，登录的用户为：" + loginUser.toString());
                 }else {
